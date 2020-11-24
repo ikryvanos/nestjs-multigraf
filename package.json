@@ -8,6 +8,7 @@
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
   "scripts": {
+    "postinstall": "tsc --outDir ./build",
     "prebuild": "rimraf dist",
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
@@ -27,7 +28,8 @@
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "source-map-support": "^0.5.19",
-    "telegraf": "^3.38.0"
+    "telegraf": "^3.38.0",
+    "tsc": "^1.20150623.0",
   },
   "devDependencies": {
     "@nestjs/testing": "^7.0.0",
@@ -47,7 +49,6 @@
     "ts-jest": "25.2.1",
     "ts-loader": "^6.2.1",
     "ts-node": "^8.6.2",
-    "tsc": "^1.20150623.0",
     "tsconfig-paths": "^3.9.0",
     "typescript": "^3.7.4"
   },
