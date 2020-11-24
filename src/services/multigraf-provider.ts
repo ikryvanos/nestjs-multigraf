@@ -1,6 +1,6 @@
 import { BotOptions, Multigraf, Context, Middleware } from '../lib/multigraf';
 
-export class MultigrafProvider<TContext extends Context = Context> {
+export class MultiGrafProvider<TContext extends Context = Context> {
   constructor(private readonly multigraf: Multigraf) {}
 
   async addBot(options: BotOptions) {
