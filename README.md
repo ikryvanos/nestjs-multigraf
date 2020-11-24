@@ -3,27 +3,27 @@ Module to create a NestJS microservice to run several telegraf bots.
 
 # Architecture
 ```
-                                                                                    /**********************\
-                                                                                    |                      |
-                                                                                    |  MultiGrafProvider   |
-                                                                                    |                      |
-                                                                                    \**********************/
-                                                                                              ||
-                                                                                              || Uses
-                                                                                              \/
-          /**********************\             /**********************\             /**********************\
-          |                      |  Include    |                      |  Includes   |                      |
-          |  NestJS Microservice | =========>  |  MultiGrafTransport  | =========>  |       MultiGraf      |
-          |                      |             |                      |             |                      |
-          \**********************/             \**********************/             \**********************/
-                                                                                              ||
-                                                                                              || Includes
-                                                                                              \/
-                                                                                    /**********************\
-                                                                                    |                      |
-                                                                                    |       Telegraf       |
-                                                                                    |                      |
-                                                                                    \**********************/
+ /**********************\            /**********************\
+|                      |            |                      |
+|  NestJS Microservice |            |  MultiGrafProvider   |
+|                      |            |                      |
+\**********************/            \**********************/
+           ||                                  ||
+           || Includes                         || Uses
+           \/                                  \/
+/**********************\             /**********************\
+|                      |  Includes   |                      |
+|  MultiGrafTransport  | =========>  |       MultiGraf      |
+|                      |             |                      |
+\**********************/             \**********************/
+                                               ||
+                                               || Includes
+                                               \/
+                                     /**********************\
+                                     |                      |
+                                     |       Telegraf       |
+                                     |                      |
+                                     \**********************/
 ```
 
 ## NestJS Microservice
@@ -73,10 +73,10 @@ bootstrap();
 To handle telegraf updates you may create a nestjs controller and declear handlers using decorators.
 Here the controller example
 ```typescript
-import { Injectable } from '@nestjs/common';
+import { Controller } from '@nestjs/common';
 import { MultiGrafStart, Context } from 'nestjs-multigraf';
 
-@Injectable()
+@Controller()
 export class StartController {
   @MultiGrafStart()
   async onStart(context: Context) {
@@ -92,3 +92,24 @@ Following decorators are available now:
 - MultiGrafOn
 - MultiGrafCommand
 - MultiGrafHelp
+
+## Run/stop bot
+Besides, running bot on the app start it is possible to run it via `MultiGrafProvider`
+Here the example:
+```typescript
+import { Injectable } from '@nestjs/common';
+import { MultiGrafProvider } from 'nestjs-multigraf';
+
+@Injectable()
+export class CustomProvider {
+  constructor(private readonly multiGrafProvider: MultiGrafProvider) {
+  }
+  
+  async startBot(name: string) {
+     await this.multiGrafProvider.addBot({
+      name: name,
+      token: '' // some bot token
+    });
+  }
+}
+```
