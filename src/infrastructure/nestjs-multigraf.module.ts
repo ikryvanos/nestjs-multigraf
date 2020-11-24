@@ -1,6 +1,6 @@
 import { DynamicModule, Module } from '@nestjs/common';
 import { Multigraf } from '../lib/multigraf';
-import { MultigrafProvider } from '../services';
+import { MultiGrafProvider } from '../services';
 
 @Module({})
 export class NestMultigrafModule {
@@ -10,11 +10,11 @@ export class NestMultigrafModule {
       imports: [module],
       providers: [
         {
-          provide: MultigrafProvider,
-          useValue: new MultigrafProvider(multigraf),
+          provide: MultiGrafProvider,
+          useValue: new MultiGrafProvider(multigraf),
         },
       ],
-      exports: [MultigrafProvider],
+      exports: [MultiGrafProvider],
       module: NestMultigrafModule,
     };
   }
