@@ -8,7 +8,6 @@
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
   "scripts": {
-    "prepack": "tsc --outDir ./build",
     "prebuild": "rimraf dist",
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
