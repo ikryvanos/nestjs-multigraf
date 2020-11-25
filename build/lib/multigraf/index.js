@@ -1,0 +1,20 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Multigraf = exports.Telegram = exports.WizardScene = exports.Stage = exports.session = exports.BaseScene = exports.Markup = exports.Composer = void 0;
+const ComposerClass = require("telegraf/composer");
+exports.Composer = ComposerClass;
+const MarkupClass = require("telegraf/markup");
+exports.Markup = MarkupClass;
+const BaseSceneClass = require("telegraf/scenes/base");
+exports.BaseScene = BaseSceneClass;
+const sessionClass = require("telegraf/session");
+exports.session = sessionClass;
+const StageClass = require("telegraf/stage");
+exports.Stage = StageClass;
+const WizardSceneClass = require("telegraf/scenes/wizard");
+exports.WizardScene = WizardSceneClass;
+var telegraf_1 = require("telegraf");
+Object.defineProperty(exports, "Telegram", { enumerable: true, get: function () { return telegraf_1.Telegram; } });
+var multigraf_1 = require("./multigraf");
+Object.defineProperty(exports, "Multigraf", { enumerable: true, get: function () { return multigraf_1.Multigraf; } });
+//# sourceMappingURL=index.js.map
