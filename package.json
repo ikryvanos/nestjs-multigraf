@@ -8,6 +8,7 @@
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
   "scripts": {
+    "precomit": "npm run build:github && git add ./build",
     "prebuild": "rimraf dist",
     "build": "tsc",
     "build:github": "tsc --outDir ./build",
